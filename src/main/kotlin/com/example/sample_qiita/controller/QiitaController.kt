@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.RestTemplate
 
+//コメントを追加１
 
 @RestController
 @RequestMapping("/api")
