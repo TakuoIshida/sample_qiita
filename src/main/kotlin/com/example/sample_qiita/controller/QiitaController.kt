@@ -11,6 +11,8 @@ import org.springframework.web.client.RestTemplate
 
 //コメントを追加１
 
+
+//コメントを追加２
 @RestController
 @RequestMapping("/api")
 class QiitaController(private val qiitaRepository: QiitaRepository) {
