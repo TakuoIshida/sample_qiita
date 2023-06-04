@@ -26,8 +26,7 @@ class QiitaController(private val qiitaRepository: QiitaRepository) {
     }
 
     @PostMapping("/qiitas")
-    fun createNewQiita(@Valid @RequestBody qiita: Qiita): Qiita =
-        qiitaRepository.save(qiita)
+    fun createNewQiita(@Valid @RequestBody qiita: Qiita): Qiita = qiitaRepository.save(qiita)
 
     @GetMapping("/qiitas/{id}")
     fun getQiitaBiId(@PathVariable(value = "id") qiitaed: Long): ResponseEntity<Qiita> {
@@ -37,9 +36,7 @@ class QiitaController(private val qiitaRepository: QiitaRepository) {
 
         return ResponseEntity.ok(
             Qiita(
-                id = 1,
-                title = "ダミータイトル",
-                content = "ダミー内容"
+                id = 1, title = "ダミータイトル", content = "ダミー内容"
             )
         )
 //        return qiitaRepository.findById(qiitaed).map { qiita ->
@@ -49,13 +46,11 @@ class QiitaController(private val qiitaRepository: QiitaRepository) {
 
     @PutMapping("/qiitas/{id}")
     fun updateQiitaById(
-        @PathVariable(value = "id") qiitaed: Long,
-        @Valid @RequestBody newQiita: Qiita
+        @PathVariable(value = "id") qiitaed: Long, @Valid @RequestBody newQiita: Qiita
     ): ResponseEntity<Qiita> {
 
         return qiitaRepository.findById(qiitaed).map { existingQiita ->
-            val updateQiita: Qiita = existingQiita
-                .copy(title = newQiita.title, content = newQiita.content)
+            val updateQiita: Qiita = existingQiita.copy(title = newQiita.title, content = newQiita.content)
             ResponseEntity.ok().body(qiitaRepository.save(updateQiita))
         }.orElse(ResponseEntity.notFound().build())
 
@@ -91,6 +86,8 @@ class QiitaController(private val qiitaRepository: QiitaRepository) {
         }
 
         fetchDataFromExternalApi()
-        return TODO("Provide the return value")
+
+        return TODO("Provide the return value") // TODOのvoidでインテリセンスがエラーになる
+
     }
 }
